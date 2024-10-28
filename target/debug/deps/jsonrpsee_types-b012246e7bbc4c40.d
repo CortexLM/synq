@@ -1,0 +1,11 @@
+/home/alex/wombo/rustnett/target/debug/deps/libjsonrpsee_types-b012246e7bbc4c40.rmeta: /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/lib.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/params.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/request.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/response.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/error.rs
+
+/home/alex/wombo/rustnett/target/debug/deps/libjsonrpsee_types-b012246e7bbc4c40.rlib: /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/lib.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/params.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/request.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/response.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/error.rs
+
+/home/alex/wombo/rustnett/target/debug/deps/jsonrpsee_types-b012246e7bbc4c40.d: /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/lib.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/params.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/request.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/response.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/error.rs
+
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/lib.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/params.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/request.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/response.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/jsonrpsee-types-0.24.7/src/error.rs:

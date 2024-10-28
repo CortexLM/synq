@@ -1,0 +1,16 @@
+/home/alex/wombo/rustnett/target/debug/deps/libsoketto-bea1533c58924645.rmeta: /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/lib.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/base.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/connection.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/data.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/extension.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/client.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/server.rs
+
+/home/alex/wombo/rustnett/target/debug/deps/libsoketto-bea1533c58924645.rlib: /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/lib.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/base.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/connection.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/data.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/extension.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/client.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/server.rs
+
+/home/alex/wombo/rustnett/target/debug/deps/soketto-bea1533c58924645.d: /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/lib.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/base.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/connection.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/data.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/extension.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/client.rs /home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/server.rs
+
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/lib.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/base.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/connection.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/data.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/extension.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/client.rs:
+/home/alex/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soketto-0.8.0/src/handshake/server.rs:
+
+# env-dep:CARGO_PKG_VERSION=0.8.0
