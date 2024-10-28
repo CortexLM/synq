@@ -3,7 +3,7 @@ use std::fs::File;
 use std::io::Write;
 use std::path::Path;
 
-use parity_scale_codec::Decode;
+use parity_scale_codec::{Decode, DecodeAll};
 use subxt_codegen;
 use subxt_codegen::CodegenBuilder;
 use subxt_metadata::Metadata;
