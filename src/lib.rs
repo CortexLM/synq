@@ -5,22 +5,30 @@ use std::path::{Path, PathBuf};
 
 use anyhow::Result;
 use hex;
-use parity_scale_codec::{Compact, Decode};
+use parity_scale_codec::{Compact, Decode, Encode};
 use serde_json::Value;
 use subxt::client::OnlineClient;
 use subxt::ext::sp_core::{sr25519, Pair};
-use subxt::tx::PairSigner;
-use subxt::{Config, SubstrateConfig};
+use subxt::{
+    SubstrateConfig,
+    Config,
+    tx::{PairSigner, Payload},
+};
 use thiserror::Error;
 
-// pub mod config;
+// Users can define their own config module (src/config.rs or src/config/mod.rs)
+// to customize network configurations as needed. The config module can contain:
+// - Network endpoints
+// - Chain-specific parameters
+// - Custom configuration types
+// Example: mod config { pub const DEFAULT_ENDPOINT: &str = "ws://..."; }
 
 include!(concat!(env!("OUT_DIR"), "/metadata.rs"));
 
 type SubtensorConfig = SubstrateConfig;
 pub type AccountId = <SubtensorConfig as Config>::AccountId;
 
-#[derive(Decode, Default, Clone, Debug)]
+#[derive(Decode, Encode, Default, Clone, Debug)]
 pub struct AxonInfo {
     pub block: u64,
     pub version: u32,
@@ -32,7 +40,7 @@ pub struct AxonInfo {
     _placeholder2: u8,
 }
 
-#[derive(Decode, Default, Clone, Debug)]
+#[derive(Decode, Encode, Default, Clone, Debug)]
 pub struct PrometheusInfo {
     pub block: u64,
     pub version: u32,
@@ -41,7 +49,7 @@ pub struct PrometheusInfo {
     pub ip_type: u8,
 }
 
-#[derive(Decode, Clone, Debug)]
+#[derive(Decode, Encode, Clone, Debug)]
 pub struct NeuronInfoLite {
     pub hotkey: AccountId,
     pub coldkey: AccountId,
@@ -61,6 +69,35 @@ pub struct NeuronInfoLite {
     pub last_update: Compact<u64>,
     pub validator_permit: bool,
     pub pruning_score: Compact<u16>,
+}
+
+#[derive(Debug)]
+pub struct SetWeightsCall {
+    pub netuid: u16,
+    pub uids: Vec<u16>,
+    pub weights: Vec<u16>,
+    pub version_key: u64,
+}
+
+#[derive(Debug)]
+pub struct ServeAxonCall {
+    pub netuid: u16,
+    pub version: u32,
+    pub ip: u128,
+    pub port: u16,
+    pub ip_type: u8,
+    pub protocol: u8,
+    pub placeholder1: u8,
+    pub placeholder2: u8,
+}
+
+#[derive(Debug)]
+pub struct ServePrometheusCall {
+    pub netuid: u16,
+    pub version: u32,
+    pub ip: u128,
+    pub port: u16,
+    pub ip_type: u8,
 }
 
 pub struct Subtensor {
@@ -157,26 +194,76 @@ impl Subtensor {
         Ok(Vec::<NeuronInfoLite>::decode(&mut response.as_ref())?)
     }
 
-    pub async fn set_weights(
-        &self,
-        keypair: &Keypair,
-        netuid: u16,
-        weights: Vec<(u16, u16)>,
-        version_key: u64,
-    ) -> Result<()> {
-        let set_weights_payload = api::tx().subtensor_module().set_weights(
-            netuid,
-            weights.iter().map(|(uid, _)| *uid).collect(),
-            weights.iter().map(|(_, weight)| *weight).collect(),
-            version_key,
-        );
+    pub fn build_set_weights(&self, params: SetWeightsCall) -> impl Payload {
+        api::tx().subtensor_module().set_weights(
+            params.netuid,
+            params.uids,
+            params.weights,
+            params.version_key,
+        )
+    }
 
+    pub fn build_serve_axon(&self, params: ServeAxonCall) -> impl Payload {
+        api::tx().subtensor_module().serve_axon(
+            params.netuid,
+            params.version,
+            params.ip,
+            params.port,
+            params.ip_type,
+            params.protocol,
+            params.placeholder1,
+            params.placeholder2,
+        )
+    }
+
+    pub fn build_serve_prometheus(&self, params: ServePrometheusCall) -> impl Payload {
+        api::tx().subtensor_module().serve_prometheus(
+            params.netuid,
+            params.version,
+            params.ip,
+            params.port,
+            params.ip_type,
+        )
+    }
+
+    pub async fn submit_transaction<T: Payload>(
+        &self,
+        payload: T,
+        signer: &Keypair,
+    ) -> Result<()> {
         self.client
             .tx()
-            .sign_and_submit_default(&set_weights_payload, &keypair.0)
+            .sign_and_submit_default(&payload, &signer.0)
             .await?;
 
         Ok(())
+    }
+
+    pub async fn set_weights(
+        &self,
+        keypair: &Keypair,
+        params: SetWeightsCall,
+    ) -> Result<()> {
+        let payload = self.build_set_weights(params);
+        self.submit_transaction(payload, keypair).await
+    }
+
+    pub async fn serve_axon(
+        &self,
+        keypair: &Keypair,
+        params: ServeAxonCall,
+    ) -> Result<()> {
+        let payload = self.build_serve_axon(params);
+        self.submit_transaction(payload, keypair).await
+    }
+
+    pub async fn serve_prometheus(
+        &self,
+        keypair: &Keypair,
+        params: ServePrometheusCall,
+    ) -> Result<()> {
+        let payload = self.build_serve_prometheus(params);
+        self.submit_transaction(payload, keypair).await
     }
 
     pub async fn get_block_number(&self) -> Result<u64> {
