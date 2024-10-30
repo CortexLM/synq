@@ -132,14 +132,7 @@ impl Subtensor {
     pub fn serve_axon(netuid: u16, ip: IpAddr, port: u16, protocol: bool) -> impl Payload {
         let (ip_num, ip_type) = match ip {
             IpAddr::V4(addr) => (u128::from(u32::from(addr)), 4u8),
-            IpAddr::V6(addr) => {
-                let octets = addr.octets();
-                let mut ip_num: u128 = 0;
-                for &byte in octets.iter() {
-                    ip_num = (ip_num << 8) | (byte as u128);
-                }
-                (ip_num, 6u8)
-            },
+            IpAddr::V6(addr) => (u128::from(addr), 6u8),
         };
 
         api::tx().subtensor_module().serve_axon(
