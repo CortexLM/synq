@@ -1,6 +1,6 @@
 # Bittensor Subnet Template
 
-A Rust library template for creating and interacting with Bittensor subnets. This template provides the essential building blocks for developing subnet implementations with built-in chain communication capabilities.
+A Rust library template for creating and interacting with Bittensor subnets. This was originally developed for ![rule30 / Subnet 36](https://github.com/womboai/rule-30-solver) This template provides the essential building blocks for developing subnet implementations with built-in chain communication capabilities.
 
 ## Features
 
