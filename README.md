@@ -1,6 +1,6 @@
 # RustNett
 
-A low level Rust library for creating and interacting with Bittensor subnets, originally developed for ![rule30 / Subnet 36](https://github.com/womboai/rule-30-solver). Built using `[subxt](https://github.com/paritytech/subxt)`
+A low level Rust library for creating and interacting with Bittensor subnets, originally developed for ![rule30 / Subnet 36](https://github.com/womboai/rule-30-solver). Built using [subxt](https://github.com/paritytech/subxt)
 
 ## Features
 
