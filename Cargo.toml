@@ -1,13 +1,17 @@
 [package]
-name = "bittensor-subnet-template"
-version = "0.1.0"
+name = "rustnett"
+version = "0.2.0"
 edition = "2021"
-description = "A template for creating Bittensor subnets"
+description = "A library for creating Bittensor subnets"
 license = "MIT"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
 subxt = { version = "0.38.0", features = ["substrate-compat"] }
-anyhow = "1.0"
+pallet-subtensor = { git = "https://github.com/opentensor/subtensor" }
+node-subtensor-runtime = { git = "https://github.com/opentensor/subtensor" }
 hex = "0.4"
 parity-scale-codec = { version = "3.0.0", features = ["derive"] }
 serde_json = "1.0"

@@ -1,9 +1,10 @@
-use std::env;
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
+use std::process::Stdio;
+use std::{env, process::Command};
 
-use parity_scale_codec::{Decode};
+use parity_scale_codec::Decode;
 use subxt_codegen;
 use subxt_codegen::CodegenBuilder;
 use subxt_metadata::Metadata;
@@ -11,7 +12,7 @@ use subxt_utils_fetchmetadata::{self as fetch_metadata, MetadataVersion};
 
 #[tokio::main]
 async fn main() {
-    let endpoint = env::var_os("CHAIN_ENDPOINT")
+    let endpoint = env::var_os("METADATA_CHAIN_ENDPOINT")
         .map(|s| s.into_string().unwrap())
         .unwrap_or("wss://entrypoint-finney.opentensor.ai:443".into());
 
@@ -30,7 +31,15 @@ async fn main() {
     let codegen = CodegenBuilder::new();
 
     let code = codegen.generate(metadata).unwrap();
-    let mut file_output = File::create(metadata_path).unwrap();
+    let file_output = File::create(metadata_path).unwrap();
 
-    file_output.write_fmt(format_args!("{code}")).unwrap();
+    let mut process = Command::new("rustfmt")
+        .stdin(Stdio::piped())
+        .stdout(file_output)
+        .spawn()
+        .unwrap();
+
+    write!(process.stdin.as_ref().unwrap(), "{code}").unwrap();
+
+    process.wait().unwrap();
 }
