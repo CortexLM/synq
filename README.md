@@ -1,6 +1,6 @@
 # Bittensor Subnet Library
 
-A Rust library for creating and interacting with Bittensor subnets. This was originally developed for ![rule30 / Subnet 36](https://github.com/womboai/rule-30-solver) This template provides the essential building blocks for developing subnet implementations with built-in chain communication capabilities.
+A Rust library for creating and interacting with Bittensor subnets. This was originally developed for ![rule30 / Subnet 36](https://github.com/womboai/rule-30-solver) This library provides the essential building blocks for developing subnet implementations with built-in chain communication capabilities.
 
 ## Features
 
@@ -23,7 +23,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-bittensor-subnet-template = "0.1.0"
+bittensor-subnet-library = "0.1.0"
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ bittensor-subnet-template = "0.1.0"
 ### Creating a Subtensor Client
 
 ```rust
-use bittensor_subnet_template::Subtensor;
+use bittensor_subnet_library::Subtensor;
 
 async fn example() -> anyhow::Result<()> {
     // Connect to the Bittensor network
@@ -65,7 +65,7 @@ async fn get_subnet_neurons(subtensor: &Subtensor) -> anyhow::Result<()> {
 ### Setting Weights
 
 ```rust
-use bittensor_subnet_template::{Subtensor, WeightSet};
+use bittensor_subnet_library::{Subtensor, WeightSet};
 
 async fn set_neuron_weights(subtensor: &Subtensor, keypair: &Keypair) -> anyhow::Result<()> {
     let weights = vec![
@@ -92,7 +92,7 @@ async fn set_neuron_weights(subtensor: &Subtensor, keypair: &Keypair) -> anyhow:
 ### Managing Hotkeys
 
 ```rust
-use bittensor_subnet_template::{hotkey_location, load_key_seed, Keypair};
+use bittensor_subnet_library::{hotkey_location, load_key_seed, Keypair};
 
 fn load_hotkey() -> anyhow::Result<Keypair> {
     // Get the default hotkey path
@@ -108,7 +108,7 @@ fn load_hotkey() -> anyhow::Result<Keypair> {
 
 ## Configuration
 
-The template can be configured by setting the following environment variable:
+The library can be configured by setting the following environment variable:
 
 - `CHAIN_ENDPOINT`: The WebSocket endpoint for the Bittensor network (default: wss://entrypoint-finney.opentensor.ai:443)
 
