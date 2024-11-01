@@ -1,8 +1,8 @@
 [package]
-name = "bittensor-subnet-template"
+name = "bittensor-subnet-library"
 version = "0.1.0"
 edition = "2021"
-description = "A template for creating Bittensor subnets"
+description = "A library for creating Bittensor subnets"
 license = "MIT"
 
 [dependencies]
