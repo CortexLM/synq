@@ -1,4 +1,4 @@
-# RustNett
+# Rusttensor
 
 A low level Rust library for creating and interacting with Bittensor subnets, originally developed for ![rule30 / Subnet 36](https://github.com/womboai/rule-30-solver). Built using [subxt](https://github.com/paritytech/subxt)
 
@@ -24,7 +24,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rustnett = { git = "https://github.com/womboai/rustnett", tag = "0.2.0" }
+rusttensor = { git = "https://github.com/womboai/rusttensor", tag = "0.2.0" }
 ```
 
 ## Usage Examples
@@ -32,7 +32,7 @@ rustnett = { git = "https://github.com/womboai/rustnett", tag = "0.2.0" }
 ### Creating a client and connecting to the subtensor
 
 ```rust
-use rustnett::subtensor::{self, Subtensor, SubtensorUrl};
+use rusttensor::subtensor::{self, Subtensor, SubtensorUrl};
 
 async fn create_client() -> Result<Subtensor, ...> {
     // Creating client to interact with subtensor
@@ -44,10 +44,10 @@ async fn create_client() -> Result<Subtensor, ...> {
 
 #### Block Management
 
-`rustnett`, based on `subxt` allows all the functionality that `subxt` provides, including the blocks API. You can fetch metadata about any block, and reuse block hashes as needed.
+`rusttensor`, based on `subxt` allows all the functionality that `subxt` provides, including the blocks API. You can fetch metadata about any block, and reuse block hashes as needed.
 
 ```rust
-use rustnett::subtensor::Subtensor;
+use rusttensor::subtensor::Subtensor;
 
 async fn blocks(client: &Subtensor) -> Result<(), ...> {
     // The latest block can be acquired with `blocks().at_latest()`
@@ -66,11 +66,11 @@ async fn blocks(client: &Subtensor) -> Result<(), ...> {
 The most common requests to the subtensor aside from the weight setting and axon serving extrinsics are the runtime APIs used for the metagraph and hyperparameters
 
 By default, most RPC calls at runtime are untyped(returning a Vec<u8>), 
-as such, `rustnett` provides a safety layer in the form of `call_runtime_api_decoded` which allows the runtime APIs to be completely type safe, much like the rest of the API.
+as such, `rusttensor` provides a safety layer in the form of `call_runtime_api_decoded` which allows the runtime APIs to be completely type safe, much like the rest of the API.
 
 ```rust
-use rustnett::rpc::{call_runtime_api_decoded, NeuronInfoLite, SubnetHyperparams};
-use rustnett::api;
+use rusttensor::rpc::{call_runtime_api_decoded, NeuronInfoLite, SubnetHyperparams};
+use rusttensor::api;
 
 async fn runtime_apis(client: &Subtensor, block_ref: impl Into<BlockRef<impl BlockHash>>) -> Result<(), ...> {
     // Construct runtime API query for subnet 1 neuron info
@@ -95,7 +95,7 @@ async fn runtime_apis(client: &Subtensor, block_ref: impl Into<BlockRef<impl Blo
 Some functionality doesn't have a specific API, such as neuron commitments which are used for arbitrary metadata like in SN39. In such cases, you can access the subtensor storage. 
 
 ```rust
-use rustnett::api;
+use rusttensor::api;
 
 async fn storage(client: &Subtensor) -> Result<(), ...> {
     let account_id: AccountId = ...;
@@ -114,7 +114,7 @@ async fn storage(client: &Subtensor) -> Result<(), ...> {
 #### Wallet Management (WIP)
 You can load existing bittensor wallets created using `btcli` and use them for signing extrinsics such as set_weights or serve_axon. Different kind of wallets can be loaded as follows:
 ```rust
-use rustnett::wallet::{Signer, home_hotkey_location, load_key_seed, signer_from_seed};
+use rusttensor::wallet::{Signer, home_hotkey_location, load_key_seed, signer_from_seed};
 
 // Create a signer from the private key of a hotkey
 fn load_hotkey_signer() -> Result<Signer, ...> {
@@ -139,9 +139,9 @@ Some extrinsics have specialized APIs that are nicer to work with, such as `serv
 Regardless of if the extrinsic has a specialized API or otherwise, submitting them remains the same:
 
 ```rust
-use rustnett::subtensor::Subtensor;
-use rustnett::wallet::Signer;
-use rustnett::weights::{set_weights_payload, normalize_weights, NormalizedWeight};
+use rusttensor::subtensor::Subtensor;
+use rusttensor::wallet::Signer;
+use rusttensor::weights::{set_weights_payload, normalize_weights, NormalizedWeight};
 
 async fn submit_extrinsics(client: &Subtensor, signer: &Signer) -> Result<(), ...> {
     let weights = vec![1.0, 2.0, 3.0];
