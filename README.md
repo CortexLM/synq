@@ -24,7 +24,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rusttensor = { git = "https://github.com/womboai/rusttensor", tag = "0.3.0" }
+rusttensor = { git = "https://github.com/womboai/rusttensor", tag = "v0.3.0" }
 ```
 
 ## Usage Examples
