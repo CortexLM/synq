@@ -10,6 +10,7 @@ pub mod wallet;
 pub mod weights;
 
 pub mod subtensor;
+pub mod sign;
 
 include!(concat!(env!("OUT_DIR"), "/metadata.rs"));
 
