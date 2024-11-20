@@ -1,20 +1,13 @@
-use pallet_subtensor::{
-    rpc_info::{
-        delegate_info,
-        neuron_info,
-        stake_info,
-        subnet_info,
-    },
-};
 use parity_scale_codec::{Compact, Decode, Error as DecodeError};
+use subxt::client::OnlineClientT;
 use subxt::{
     ext::scale_encode::EncodeAsFields,
     runtime_api::{RuntimeApi, StaticPayload},
     Error as CallError,
 };
-use subxt::client::OnlineClientT;
 use thiserror::Error;
 
+use crate::rpc::types::{DelegateInfo, NeuronInfo, NeuronInfoLite, StakeInfo, SubnetHyperparams, SubnetInfo, SubnetInfov2};
 use crate::{
     api::runtime_apis::{
         delegate_info_runtime_api::types::{GetDelegate, GetDelegated, GetDelegates},
@@ -24,8 +17,11 @@ use crate::{
             GetSubnetHyperparams, GetSubnetInfo, GetSubnetInfoV2, GetSubnetsInfo, GetSubnetsInfoV2,
         },
     },
-    AccountId, SpSubtensorConfig, SubtensorConfig,
+    AccountId,
+    SubtensorConfig,
 };
+
+pub mod types;
 
 #[derive(Error, Debug)]
 pub enum RuntimeApiError {
@@ -47,13 +43,6 @@ pub async fn call_runtime_api_decoded<T: RuntimeApiPayloadData + EncodeAsFields>
     )?)
 }
 
-pub type DelegateInfo = delegate_info::DelegateInfo<SpSubtensorConfig>;
-pub type NeuronInfo = neuron_info::NeuronInfo<SpSubtensorConfig>;
-pub type NeuronInfoLite = neuron_info::NeuronInfoLite<SpSubtensorConfig>;
-pub type StakeInfo = stake_info::StakeInfo<SpSubtensorConfig>;
-pub type SubnetHyperparams = subnet_info::SubnetHyperparams;
-pub type SubnetInfo = subnet_info::SubnetInfo<SpSubtensorConfig>;
-pub type SubnetInfov2 = subnet_info::SubnetInfov2<SpSubtensorConfig>;
 
 pub trait RuntimeApiPayloadData {
     type Response: Decode;
