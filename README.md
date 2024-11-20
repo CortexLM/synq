@@ -77,7 +77,7 @@ async fn runtime_apis(client: &Subtensor, block_ref: impl Into<BlockRef<impl Blo
     let neurons_lites_payload = api::apis().neuron_info_runtime_api().get_neurons_lite(1);
 
     // query NeuronInfoRuntimeApi at specific block
-    let block_runtime = client.runtime_api().at(block).await?;
+    let block_runtime = client.runtime_api().at(block_ref)?;
     let neurons: Vec<NeuronInfoLite> = call_runtime_api_decoded(&block_runtime, neurons_lites_payload).await?;
 
     // Or query hyperparameters for subnet 2 at latest block
