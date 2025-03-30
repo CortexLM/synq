@@ -1,6 +1,6 @@
 [package]
-name = "rusttensor"
-version = "0.3.0"
+name = "synq"
+version = "0.0.1"
 edition = "2021"
 description = "A library for creating Bittensor subnets"
 license = "MIT"
@@ -11,13 +11,13 @@ targets = ["x86_64-unknown-linux-gnu"]
 [dependencies]
 subxt = { version = "0.38.0", features = ["substrate-compat"] }
 hex = "0.4"
-parity-scale-codec = { version = "3.0.0", features = ["derive"] }
-serde_json = "1.0"
-thiserror = "2.0.3"
-dirs = "5.0"
+parity-scale-codec = { version = "3.7.4", features = ["derive"] }
+serde_json = "1.0.140"
+thiserror = "2.0.12"
+dirs = "6.0.0"
 
 [build-dependencies]
-tokio = { version = "1.0", features = ["full"] }
+tokio = { version = "1.44.1", features = ["full"] }
 subxt-codegen = "0.38.0"
 subxt-metadata = "0.38.0"
 subxt-utils-fetchmetadata = { version = "0.38.0", features = ["url"] }
